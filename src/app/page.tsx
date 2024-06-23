@@ -3,13 +3,6 @@ import Image from "next/image";
 
 export default async function Home() {
   const session = await auth();
-  if (session?.user) {
-    session.user = {
-      name: session.user.name,
-      email: session.user.email,
-      image: session.user.image,
-    };
-  }
 
   return (
     <main>
@@ -26,14 +19,14 @@ export default async function Home() {
         <>
           <Image
             alt="ユーザーアイコン"
-            src={session?.user?.image ?? ""}
+            src={session.user?.image ?? ""}
             width={24}
             height={24}
           />
           <br />
-          name: {session?.user?.name}
+          name: {session.user?.name}
           <br />
-          email: {session?.user?.email}
+          email: {session.user?.email}
           <form
             action={async () => {
               "use server";
